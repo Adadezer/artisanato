@@ -1,6 +1,5 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@config "../tailwind.config.js";
 
 /* RESET BÁSICO */
 * {
@@ -12,7 +11,6 @@
 /* BASE DA APLICAÇÃO */
 body {
   font-family: "Grand Hotel", sans-serif;
-  background-color: rgb(175, 142, 120); /* marrom */
   color: #ffffff; /* texto branco padrão */
   min-height: 100vh;
 }
@@ -24,7 +22,6 @@ h3,
 h4,
 h5,
 h6,
-p,
 span,
 a {
   color: #ffffff;
