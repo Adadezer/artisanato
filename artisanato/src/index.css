@@ -1,45 +1,32 @@
 @import "tailwindcss";
 @config "../tailwind.config.js";
 
-/* RESET BÁSICO */
+:root {
+  --font-serif: "Allura", cursive;
+  --font-handwriting: "Grand Hotel", sans-serif;
+}
+
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  scroll-behavior: smooth;
 }
 
-/* BASE DA APLICAÇÃO */
 body {
-  font-family: "Grand Hotel", sans-serif;
-  color: #ffffff; /* texto branco padrão */
-  min-height: 100vh;
+  font-family:
+    "Inter",
+    system-ui,
+    -apple-system,
+    sans-serif;
+  /* -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale; */
 }
 
-/* GARANTE TEXTO BRANCO NOS ELEMENTOS */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-span,
-a {
-  color: #ffffff;
+.font-serif {
+  font-family: var(--font-serif);
 }
 
-/* TÍTULO COM FONTE DIFERENTE */
-h1 {
-  font-family: "Allura", cursive;
-  font-weight: 500;
-  font-size: 56px;
-  letter-spacing: -1.5px;
-  margin: 32px 0;
-}
-
-/* RESPONSIVO */
-@media (max-width: 768px) {
-  h1 {
-    font-size: 36px;
-    margin: 20px 0;
-  }
+.font-handwriting {
+  font-family: var(--font-handwriting);
 }
