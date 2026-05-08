@@ -27,18 +27,19 @@ export default function App() {
     <div className="min-h-screen bg-stone-50 font-sans text-stone-900 selection:bg-amber-100 selection:text-amber-900">
       {/* NAVIGATION */}
       <nav
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 py-4 ${
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           scrolled
-            ? "bg-white/80 backdrop-blur-xl shadow-sm py-3 border-b border-stone-100"
-            : "bg-transparent"
+            ? "bg-white/80 backdrop-blur-xl shadow-sm py-4 border-b border-stone-100"
+            : "bg-stone-50 border-b border-stone-100 py-6"
         }`}
       >
-        <div className="max-w-7xl mx-auto flex justify-between items-center">
-          <h1 className="text-3xl font-handwriting text-stone-800 tracking-tight cursor-default">
-            Artisanato
-          </h1>
-
-          <div className="hidden md:flex items-center gap-10 text-sm font-medium text-stone-500">
+        <div className="max-w-7xl mx-auto flex justify-between items-center px-6">
+          <img
+            src="artizanato.png"
+            alt="Artisanato da Isa"
+            className="h-10 w-auto object-contain"
+          />
+          {/* <div className="hidden md:flex items-center gap-10 text-sm font-medium text-stone-500">
             <a
               href="#"
               className="hover:text-amber-700 transition-colors relative group"
@@ -60,7 +61,7 @@ export default function App() {
               Encomendas
               <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-amber-600 transition-all group-hover:w-full"></span>
             </a>
-          </div>
+          </div> */}
 
           <button className="bg-stone-900 text-white px-6 py-2.5 rounded-full text-sm font-semibold hover:bg-stone-800 transition-all hover:scale-105 active:scale-95 shadow-lg shadow-stone-200">
             Contato
@@ -69,72 +70,61 @@ export default function App() {
       </nav>
 
       {/* HERO SECTION */}
-      <section className="relative pt-40 pb-24 px-6 overflow-hidden">
-        {/* Background elements */}
-        {/* <div className="absolute top-0 right-0 -z-10 w-2/3 h-full bg-stone-100 rounded-bl-[120px] transition-all duration-1000" />
-        <div className="absolute top-40 left-10 -z-10 w-64 h-64 bg-amber-100 rounded-full blur-3xl opacity-40 animate-pulse" /> */}
+      <section className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 pt-72 pb-20 px-6">
+        <div className="flex flex-col gap-10">
+          <h1 className="text-6xl md:text-8xl leading-[1.1] text-stone-900 font-medium mt-4">
+            A Arte do <br />
+            <span className="text-amber-700 font-serif italic pr-4">
+              Manual
+            </span>
+          </h1>
 
-        <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-          <div className="flex flex-col gap-8">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-50 border border-amber-100 w-fit">
-              {/* <span className="flex h-2 w-2 rounded-full bg-amber-500"></span>
-              <span className="text-amber-800 font-bold tracking-widest text-[10px] uppercase">
-                Edição Limitada 2026
-              </span> */}
-            </div>
+          <p className="text-stone-600 text-xl max-w-lg leading-relaxed font-light">
+            Transformamos matérias-primas em histórias tangíveis. Cada detalhe é
+            pensado para trazer alma e calor ao seu ambiente.
+          </p>
 
-            <h1 className="!text-6xl md:!text-8xl !m-0 leading-[0.9] text-stone-900 font-medium">
-              A Arte do <br />
-              <span className="text-amber-700 font-serif italic pr-4">
-                Manual
-              </span>
-            </h1>
-
-            <p className="text-stone-600 text-xl max-w-lg leading-relaxed font-light">
-              Transformamos matérias-primas em histórias tangíveis. Cada detalhe
-              é pensado para trazer alma e calor ao seu ambiente.
-            </p>
-
-            <div className="flex flex-wrap gap-5 pt-4">
-              <a
-                href="#produtos"
-                className="bg-stone-900 text-white px-10 py-4 rounded-2xl font-bold hover:bg-stone-800 transition-all hover:translate-y-[-4px] shadow-2xl shadow-stone-300 flex items-center gap-2 group"
+          <div className="flex flex-wrap gap-5 pt-4">
+            <a
+              href="#produtos"
+              className="bg-stone-900 text-white px-10 py-4 rounded-2xl font-bold hover:bg-stone-800 transition-all hover:translate-y-[-4px] shadow-2xl shadow-stone-300 flex items-center gap-2 group"
+            >
+              Explorar Coleção
+              <svg
+                className="w-5 h-5 group-hover:translate-x-1 transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
               >
-                Explorar Coleção
-                <svg
-                  className="w-5 h-5 group-hover:translate-x-1 transition-transform"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M17 8l4 4m0 0l-4 4m4-4H3"
-                  />
-                </svg>
-              </a>
-              <a
-                href="#encomenda"
-                className="bg-white text-stone-800 border-2 border-stone-100 px-10 py-4 rounded-2xl font-bold hover:border-amber-200 hover:bg-amber-50/30 transition-all"
-              >
-                Personalizar
-              </a>
-            </div>
-          </div>
-
-          <div className="relative group">
-            <div className="absolute -inset-6 bg-gradient-to-tr from-amber-200 to-rose-100 rounded-[40px] rotate-3 -z-10 opacity-40 group-hover:rotate-6 transition-transform duration-700" />
-            <div className="bg-white p-5 rounded-[40px] shadow-[0_32px_64px_-12px_rgba(0,0,0,0.1)] overflow-hidden">
-              <img
-                src="/src/assets/hero.png"
-                alt="Artesanato de Luxo"
-                className="rounded-[30px] w-full object-cover aspect-[4/5] hover:scale-105 transition-transform duration-1000"
-              />
-            </div>
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            </a>
+            <a
+              href="#encomenda"
+              className="bg-white text-stone-800 border-2 border-stone-100 px-10 py-4 rounded-2xl font-bold hover:border-amber-200 hover:bg-amber-50/30 transition-all"
+            >
+              Personalizar
+            </a>
           </div>
         </div>
+        {/* </div> */}
+
+        <div className="relative group">
+          <div className="absolute -inset-6 bg-gradient-to-tr from-amber-200 to-rose-100 rotate-3 -z-10 opacity-40 group-hover:rotate-6 transition-transform duration-700" />
+          <div className="bg-white p-5  shadow-[0_32px_64px_-12px_rgba(0,0,0,0.1)] overflow-hidden">
+            <img
+              src="/src/assets/hero2.jpg"
+              alt="Artesanato de Luxo"
+              className=" w-full object-cover aspect-[4/5] hover:scale-105 transition-transform duration-1000"
+            />
+          </div>
+        </div>
+        {/* </div> */}
       </section>
 
       {/* PRODUCT GRID */}
