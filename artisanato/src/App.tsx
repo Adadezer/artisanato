@@ -10,6 +10,28 @@ type Produto = {
 export default function App() {
   const [produtos, setProdutos] = useState<Produto[]>([]);
   const [scrolled, setScrolled] = useState(false);
+  const [quantidades, setQuantidades] = useState<Record<number, number>>({});
+
+  const formatPrice = (price: number) => {
+    return new Intl.NumberFormat("pt-BR", {
+      style: "currency",
+      currency: "BRL",
+    }).format(price / 100);
+  };
+
+  const aumentarQuantidade = (produtoId: number) => {
+    setQuantidades((prev) => ({
+      ...prev,
+      [produtoId]: (prev[produtoId] || 1) + 1,
+    }));
+  };
+
+  const diminuirQuantidade = (produtoId: number) => {
+    setQuantidades((prev) => ({
+      ...prev,
+      [produtoId]: Math.max((prev[produtoId] || 1) - 1, 1),
+    }));
+  };
 
   useEffect(() => {
     fetch("http://localhost:3001/produtos")
@@ -70,7 +92,7 @@ export default function App() {
       </nav>
 
       {/* HERO SECTION */}
-      <section className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 pt-72 pb-20 px-6">
+      <section className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 pt-24 pb-20 px-6">
         <div className="flex flex-col gap-10">
           <h1 className="text-6xl md:text-8xl leading-[1.1] text-stone-900 font-medium mt-4">
             A Arte do <br />
@@ -87,9 +109,9 @@ export default function App() {
           <div className="flex flex-wrap gap-5 pt-4">
             <a
               href="#produtos"
-              className="bg-stone-900 text-white px-10 py-4 rounded-2xl font-bold hover:bg-stone-800 transition-all hover:translate-y-[-4px] shadow-2xl shadow-stone-300 flex items-center gap-2 group"
+              className="bg-stone-900 text-white px-10 py-4 rounded-2xl font-bold hover:bg-stone-800 flex items-center gap-2 group"
             >
-              Explorar Coleção
+              Destaques da temporada
               <svg
                 className="w-5 h-5 group-hover:translate-x-1 transition-transform"
                 fill="none"
@@ -114,21 +136,17 @@ export default function App() {
         </div>
         {/* </div> */}
 
-        <div className="relative group">
-          <div className="absolute -inset-6 bg-gradient-to-tr from-amber-200 to-rose-100 rotate-3 -z-10 opacity-40 group-hover:rotate-6 transition-transform duration-700" />
-          <div className="bg-white p-5  shadow-[0_32px_64px_-12px_rgba(0,0,0,0.1)] overflow-hidden">
-            <img
-              src="/src/assets/hero2.jpg"
-              alt="Artesanato de Luxo"
-              className=" w-full object-cover aspect-[4/5] hover:scale-105 transition-transform duration-1000"
-            />
-          </div>
+        <div className="relative group overflow-visible flex items-center justify-center">
+          <img
+            src="/src/assets/hero2.jpg"
+            alt="Artesanato de Luxo"
+            className="w-[150%] h-auto object-cover scale-125"
+          />
         </div>
-        {/* </div> */}
       </section>
 
       {/* PRODUCT GRID */}
-      <section id="produtos" className="py-32 px-6 bg-white">
+      <section id="produtos" className="px-6 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="flex flex-col md:flex-row md:items-end justify-between mb-20 gap-8">
             <div className="max-w-2xl">
@@ -137,10 +155,10 @@ export default function App() {
               </h2>
               <p className="text-stone-500 text-lg">
                 Confira os produtos vendidos nessa temporada, feito
-                especialmente para voce.
+                especialmente para você.
               </p>
             </div>
-            <div className="flex gap-4">
+            {/* <div className="flex gap-4">
               <button className="p-4 rounded-2xl border border-stone-100 text-stone-400 hover:border-amber-200 hover:text-amber-700 hover:bg-amber-50 transition-all shadow-sm">
                 <svg
                   className="w-6 h-6"
@@ -171,22 +189,22 @@ export default function App() {
                   />
                 </svg>
               </button>
-            </div>
+            </div> */}
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
             {produtos.map((produto) => (
               <div
                 key={produto.id}
-                className="group relative bg-stone-50 rounded-[48px] overflow-hidden border border-stone-100 transition-all duration-700 hover:shadow-[0_40px_80px_-15px_rgba(0,0,0,0.1)] hover:translate-y-[-12px]"
+                className="group relative bg-stone-100 rounded-3xl overflow-hidden border border-stone-100"
               >
-                <div className="relative aspect-[4/5] overflow-hidden bg-white m-4 rounded-[36px]">
+                <div className="relative aspect-[4/5] overflow-hidden bg-white m-4 rounded-3xl">
                   <img
                     src={produto.imagem}
                     alt={produto.nome}
-                    className="w-full h-full object-contain p-10 group-hover:scale-110 transition-transform duration-1000 ease-out"
+                    className="w-full h-full object-contain p-5 rounded-3xl"
                   />
-                  <div className="absolute top-6 right-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
+                  {/* <div className="absolute top-6 right-6 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
                     <button className="bg-white/90 backdrop-blur-md p-3 rounded-2xl shadow-xl hover:bg-rose-500 hover:text-white transition-all text-stone-400">
                       <svg
                         className="w-6 h-6"
@@ -202,44 +220,92 @@ export default function App() {
                         />
                       </svg>
                     </button>
-                  </div>
+                  </div> */}
                 </div>
 
-                <div className="p-10 pt-4">
+                <div className="p-10 pt-4 flex flex-col items-center text-center md:items-start md:text-left">
                   <div className="flex flex-col gap-2">
                     <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-600/60">
                       Artesanal • Único
                     </span>
-                    <h3 className="text-2xl font-medium text-stone-800 group-hover:text-amber-800 transition-colors">
+                    <h3 className="text-2xl font-display font-medium text-stone-800 tracking-tight">
                       {produto.nome}
                     </h3>
                   </div>
 
-                  <div className="flex items-center justify-between mt-8">
+                  <div className="flex flex-col gap-5 mt-8 md:flex-row md:items-end md:justify-between">
                     <div className="flex flex-col">
                       <span className="text-xs text-stone-400 font-medium">
                         Valor
                       </span>
-                      <span className="text-3xl font-bold text-stone-900">
-                        R$ {produto.preco}
+
+                      <span className="text-3xl font-bold text-stone-900 font-display">
+                        {formatPrice(
+                          produto.preco * (quantidades[produto.id] || 1),
+                        )}
                       </span>
                     </div>
-                    <button className="bg-stone-900 text-white p-5 rounded-2xl hover:bg-amber-700 transition-all shadow-xl shadow-stone-200 group-hover:scale-110 active:scale-90">
-                      <svg
-                        className="w-6 h-6"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
+
+                    <div className="flex items-center justify-center w-full md:w-auto">
+                      <button
+                        onClick={() => diminuirQuantidade(produto.id)}
+                        className="bg-stone-200 text-stone-700 w-9 h-9 rounded-xl flex items-center justify-center hover:bg-stone-300 transition-all"
                       >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M12 4v16m8-8H4"
-                        />
-                      </svg>
-                    </button>
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M20 12H4"
+                          />
+                        </svg>
+                      </button>
+
+                      <span className="text-xl font-bold text-stone-900 font-display min-w-10 text-center">
+                        {quantidades[produto.id] || 1}x
+                      </span>
+
+                      <button
+                        onClick={() => aumentarQuantidade(produto.id)}
+                        className="bg-stone-900 text-white w-9 h-9 rounded-xl flex items-center justify-center hover:bg-amber-700 transition-all"
+                      >
+                        <svg
+                          className="w-4 h-4"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={2}
+                            d="M12 4v16m8-8H4"
+                          />
+                        </svg>
+                      </button>
+                    </div>
                   </div>
+                  <button className="bg-amber-700 text-white p-5 rounded-2xl hover:bg-amber-900 justify-center w-full mt-5">
+                    Pedir
+                    {/* <svg
+                      className="w-6 h-6"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 4v16m8-8H4"
+                      />
+                    </svg> */}
+                  </button>
                 </div>
               </div>
             ))}
@@ -398,7 +464,7 @@ export default function App() {
             </div>
           </div>
 
-          <div className="pt-12 border-t border-stone-100 flex flex-col md:flex-row justify-between items-center gap-6">
+          {/* <div className="pt-12 border-t border-stone-100 flex flex-col md:flex-row justify-between items-center gap-6">
             <p className="text-stone-400 text-sm">
               © 2026 Artisanato Studio. Feito com paixão pelo manual.
             </p>
@@ -410,7 +476,7 @@ export default function App() {
                 Termos
               </a>
             </div>
-          </div>
+          </div> */}
         </div>
       </footer>
     </div>
