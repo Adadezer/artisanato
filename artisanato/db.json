@@ -54,11 +54,11 @@
       "preco": 6800,
       "imagem": "https://images.unsplash.com/photo-1677064061401-f77f966ff8a1?q=80&w=1185&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
-   {
-        "id": 10,
-        "nome": "Abajur de Madeira Artesanal",
-        "preco": 14500,
-        "imagem": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c"
+    {
+      "id": 10,
+      "nome": "Abajur de Madeira",
+      "preco": 14500,
+      "imagem": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c"
     },
     {
       "id": 11,
@@ -66,13 +66,13 @@
       "preco": 4200,
       "imagem": "https://plus.unsplash.com/premium_photo-1718398006078-e3e328e8bace?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
     },
-     {
+    {
       "id": 12,
       "nome": "Tapete de Crochê",
       "preco": 18000,
       "imagem": "https://images.unsplash.com/photo-1618220179428-22790b461013"
-    },      
-   
+    },
+
     {
       "id": 13,
       "nome": "Almofada de Tricô",

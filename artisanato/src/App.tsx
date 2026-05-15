@@ -109,7 +109,7 @@ export default function App() {
           <div className="flex flex-wrap gap-5 pt-4">
             <a
               href="#produtos"
-              className="bg-stone-900 text-white px-10 py-4 rounded-2xl font-bold hover:bg-stone-800 transition-all hover:translate-y-[-4px] shadow-2xl shadow-stone-300 flex items-center gap-2 group"
+              className="bg-stone-900 text-white px-10 py-4 rounded-2xl font-bold hover:bg-stone-800 flex items-center gap-2 group"
             >
               Destaques da temporada
               <svg
@@ -140,7 +140,7 @@ export default function App() {
           <img
             src="/src/assets/hero2.jpg"
             alt="Artesanato de Luxo"
-            className="w-[150%] h-auto object-cover scale-125 hover:scale-150 transition-transform duration-1000"
+            className="w-[150%] h-auto object-cover scale-125"
           />
         </div>
       </section>
@@ -223,7 +223,7 @@ export default function App() {
                   </div> */}
                 </div>
 
-                <div className="p-10 pt-4">
+                <div className="p-10 pt-4 flex flex-col items-center text-center md:items-start md:text-left">
                   <div className="flex flex-col gap-2">
                     <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-amber-600/60">
                       Artesanal • Único
@@ -233,7 +233,7 @@ export default function App() {
                     </h3>
                   </div>
 
-                  <div className="flex items-end justify-between mt-8">
+                  <div className="flex flex-col gap-5 mt-8 md:flex-row md:items-end md:justify-between">
                     <div className="flex flex-col">
                       <span className="text-xs text-stone-400 font-medium">
                         Valor
@@ -246,7 +246,7 @@ export default function App() {
                       </span>
                     </div>
 
-                    <div className="flex items-center">
+                    <div className="flex items-center justify-center w-full md:w-auto">
                       <button
                         onClick={() => diminuirQuantidade(produto.id)}
                         className="bg-stone-200 text-stone-700 w-9 h-9 rounded-xl flex items-center justify-center hover:bg-stone-300 transition-all"
@@ -266,7 +266,7 @@ export default function App() {
                         </svg>
                       </button>
 
-                      <span className="text-xl font-bold text-stone-900 font-display min-w-[40px] text-center">
+                      <span className="text-xl font-bold text-stone-900 font-display min-w-10 text-center">
                         {quantidades[produto.id] || 1}x
                       </span>
 
@@ -464,7 +464,7 @@ export default function App() {
             </div>
           </div>
 
-          <div className="pt-12 border-t border-stone-100 flex flex-col md:flex-row justify-between items-center gap-6">
+          {/* <div className="pt-12 border-t border-stone-100 flex flex-col md:flex-row justify-between items-center gap-6">
             <p className="text-stone-400 text-sm">
               © 2026 Artisanato Studio. Feito com paixão pelo manual.
             </p>
@@ -476,7 +476,7 @@ export default function App() {
                 Termos
               </a>
             </div>
-          </div>
+          </div> */}
         </div>
       </footer>
     </div>
